@@ -190,9 +190,9 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
 .footer { background: var(--ink); color: var(--paper); padding: 56px 0 26px; }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; margin-bottom: 32px; }
 .footer-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-.footer-brand img { height: 34px; filter: brightness(0) invert(1); }
+.footer-brand img { height: 34px; }
 .footer-brand .wordmark { color: var(--paper); }
-.footer-brand .wordmark .uni { color: var(--gold); }
+.footer-brand .wordmark .uni { color: var(--red); }
 .footer-col h4 { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
 .footer a { color: var(--paper); opacity: .85; }
