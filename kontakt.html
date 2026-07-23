@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontakt — Uniemballage Produktion ApS</title>
+<meta name="description" content="Kontakt Uniemballage Produktion ApS for et uforpligtende tilbud på display-, transport- eller salgsemballage.">
+<link rel="icon" type="image/png" sizes="32x32" href="Bilder/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="Bilder/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="Bilder/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@600;700;800&family=Archivo+Narrow:wght@700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="kontakt">
+
+<div id="site-header"></div>
+
+<section class="section wrap" style="padding-bottom:20px">
+  <span class="eyebrow reveal">Kontakt</span>
+  <h1 class="reveal" style="font-size:clamp(28px,4vw,44px);margin-top:10px;max-width:16ch">Lad os tale om dit emballageprojekt</h1>
+  <p class="lead reveal">Ring, skriv eller brug formularen — vi vender tilbage hurtigst muligt.</p>
+</section>
+
+<section class="section wrap" style="padding-top:0">
+  <div class="kontakt-grid">
+    <div class="form-card reveal">
+      <h2>Send en besked</h2>
+      <div class="form-error" id="form-error">Noget gik galt. Prøv igen, eller send en e-mail direkte til <a href="mailto:brian@uniemballage.dk">brian@uniemballage.dk</a>.</div>
+      <form id="kontakt-form" onsubmit="sendForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="navn">Navn</label>
+            <input type="text" id="navn" name="navn" placeholder="Dit navn" required>
+          </div>
+          <div class="form-group">
+            <label for="epost">E-mail</label>
+            <input type="email" id="epost" name="email" placeholder="din@epost.dk" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="tlf">Telefon (valgfrit)</label>
+          <input type="tel" id="tlf" name="tlf" placeholder="+45 00 00 00 00">
+        </div>
+        <div class="form-group">
+          <label for="melding">Besked</label>
+          <textarea id="melding" name="melding" placeholder="Fortæl os om dit projekt..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary form-submit">Send besked <span class="btn-arrow">&rarr;</span></button>
+        <p class="form-note">Vi svarer som regel inden for én arbejdsdag.</p>
+      </form>
+      <div class="form-success" id="form-success">
+        <div class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+        <h3>Tak for din besked!</h3>
+        <p>Vi kontakter dig snarest.</p>
+      </div>
+    </div>
+
+    <div class="kontakt-info reveal" style="transition-delay:.1s">
+      <div class="kinfo-box">
+        <h4>Find os</h4>
+        <div class="kinfo-row">Hørskætten 28<br>2630 Taastrup</div>
+        <div class="kmap">
+          <iframe
+            src="https://www.google.com/maps?q=H%C3%B8rsk%C3%A6tten+28,+2630+Taastrup&output=embed"
+            title="Kort — Uniemballage Produktion ApS, Hørskætten 28, Taastrup"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+      <div class="kinfo-box">
+        <h4>Kontaktpersoner</h4>
+        <div class="kinfo-row">Brian Møhncke<br><a href="tel:+4541681000">41 68 10 00</a> &middot; <a href="mailto:brian@uniemballage.dk">brian@uniemballage.dk</a></div>
+        <div class="kinfo-row">Steen Jønsson<br><a href="tel:+4525361223">25 36 12 23</a> &middot; <a href="mailto:steen@uniemballage.dk">steen@uniemballage.dk</a></div>
+      </div>
+      <div class="kinfo-box">
+        <h4>Virksomhed</h4>
+        <div class="kinfo-row">Uniemballage Produktion ApS<br>CVR 32941079</div>
+        <div class="kinfo-row"><a href="tel:+4546421223">46 42 12 23</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script>
+  async function sendForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('kontakt-form');
+    const btn = form.querySelector('button[type="submit"]');
+    const errorBox = document.getElementById('form-error');
+
+    btn.disabled = true;
+    btn.textContent = 'Sender…';
+    errorBox.classList.remove('visible');
+
+    try {
+      const res = await fetch('https://formspree.io/f/FORMSPREE_ID', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        errorBox.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        throw new Error('server');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.innerHTML = 'Send besked <span class="btn-arrow">&rarr;</span>';
+      errorBox.classList.add('visible');
+    }
+  }
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
