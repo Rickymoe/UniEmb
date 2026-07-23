@@ -302,12 +302,12 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
 }
 
 /* ===== CTA band (before footer) ===== */
-.cta-band { background: var(--olive); padding: 56px 0; text-align: center; }
-.cta-band h2 { font-size: clamp(22px, 3vw, 30px); color: #fff; }
-.cta-band p { margin-top: 10px; color: rgba(255, 255, 255, .85); }
+.cta-band { background: var(--paper); padding: 56px 0; text-align: center; }
+.cta-band h2 { font-size: clamp(22px, 3vw, 30px); color: var(--ink); }
+.cta-band p { margin-top: 10px; color: rgba(33, 28, 21, .7); }
 .cta-band .btn-row { margin-top: 26px; display: flex; justify-content: center; }
-.cta-band .btn-secondary { border-color: rgba(255, 255, 255, .7); color: #fff; }
-.cta-band .btn-secondary:hover { background: rgba(255, 255, 255, .15); }
+.cta-band .btn-secondary { border-color: rgba(33, 28, 21, .3); color: var(--ink); }
+.cta-band .btn-secondary:hover { background: rgba(33, 28, 21, .06); }
 
 /* ===== Footer ===== */
 .footer { position: relative; overflow: hidden; background: var(--ink); color: var(--paper); padding: 56px 0 26px; }
