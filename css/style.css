@@ -180,6 +180,31 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
 .referencer-grid img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 2px; border: 1px solid var(--line); background: #fff; transition: transform .3s ease; }
 @media (hover: hover) { .referencer-grid img:hover { transform: scale(1.03); } }
 
+/* ===== Statement band (forside, under hero) ===== */
+.statement-band { padding: 50px 0; text-align: center; }
+.statement-band p { font-family: 'Archivo Expanded', sans-serif; font-weight: 800; text-transform: uppercase; font-size: clamp(26px, 4.2vw, 46px); line-height: 1.2; color: var(--ink); }
+.statement-band .statement-highlight { position: relative; color: var(--red); }
+
+/* word-by-word stagger + underline-draw on "holder", triggered by the shared .reveal/.visible mechanism */
+.statement-band .reveal { opacity: 1; transform: none; transition: none; }
+.statement-text .word { display: inline-block; opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+.statement-text .word:nth-child(1) { transition-delay: .05s; }
+.statement-text .word:nth-child(2) { transition-delay: .15s; }
+.statement-text .word:nth-child(3) { transition-delay: .28s; }
+.statement-text .word:nth-child(4) { transition-delay: .38s; }
+.statement-text .word:nth-child(5) { transition-delay: .48s; }
+.statement-band .reveal.visible .word { opacity: 1; transform: none; }
+.statement-highlight .word-underline {
+  position: absolute; left: 0; right: 0; bottom: -6px; height: 4px;
+  background: var(--red); transform: scaleX(0); transform-origin: left;
+  transition: transform .5s ease; transition-delay: .65s;
+}
+.statement-band .reveal.visible .statement-highlight .word-underline { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .statement-text .word { opacity: 1; transform: none; transition: none; }
+  .statement-highlight .word-underline { transition: none; }
+}
+
 /* ===== CTA band (before footer) ===== */
 .cta-band { background: var(--kraft); padding: 56px 0; text-align: center; }
 .cta-band h2 { font-size: clamp(22px, 3vw, 30px); color: var(--ink); }
