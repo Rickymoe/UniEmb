@@ -194,12 +194,16 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
 .hero-carousel-arrow:hover { background: var(--red); color: #fff; }
 .hero-carousel-prev { left: 12px; }
 .hero-carousel-next { right: 12px; }
-.hero-carousel-dots { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; gap: 8px; }
+.hero-carousel-dots {
+  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 2;
+  display: flex; gap: 10px; padding: 7px 10px; background: rgba(33, 28, 21, .35); border-radius: 999px;
+}
 .hero-carousel-dot {
-  width: 8px; height: 8px; padding: 0; border-radius: 50%; border: none;
+  position: relative; width: 8px; height: 8px; padding: 0; border-radius: 50%; border: none;
   background: rgba(255, 255, 255, .65); box-shadow: 0 1px 3px rgba(0, 0, 0, .3); cursor: pointer;
   transition: background .2s ease, transform .2s ease;
 }
+.hero-carousel-dot::after { content: ''; position: absolute; inset: -8px; }
 .hero-carousel-dot.is-active { background: var(--red); transform: scale(1.3); }
 @media (prefers-reduced-motion: reduce) { .hero-carousel-slide { transition: none; } }
 @media (max-width: 900px) { .hero-carousel { max-width: 480px; } }
