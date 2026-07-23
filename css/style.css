@@ -3,8 +3,8 @@
   --kraft-dark: #A9824F;
   --paper: #FAF6EC;
   --ink: #211C15;
-  --red: #B30000;
-  --red-dark: #8A0000;
+  --red: #A1462F;
+  --red-dark: #7E3620;
   --gold: #E8B252;
   --gold-dark: #9E6E0C;
   --line: rgba(33, 28, 21, 0.16);
@@ -247,7 +247,8 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
 /* ===== Statement band (forside, under hero) ===== */
 .statement-band { padding: 50px 0; background: #fff; }
 .statement-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
-.statement-band p { font-family: 'Archivo Expanded', sans-serif; font-weight: 800; text-transform: uppercase; font-size: clamp(24px, 3.6vw, 40px); line-height: 1.2; color: var(--ink); }
+.statement-band p { font-family: 'Archivo Expanded', sans-serif; font-weight: 800; text-transform: uppercase; font-size: clamp(30px, 4.8vw, 54px); line-height: 1.15; color: var(--ink); }
+.statement-band .statement-support { font-family: 'Inter', sans-serif; font-weight: 400; text-transform: none; font-size: 17px; line-height: 1.6; color: #4a4436; max-width: 46ch; margin-top: 20px; }
 .statement-band .statement-highlight { position: relative; color: var(--red); }
 @media (max-width: 900px) { .statement-grid { grid-template-columns: 1fr; } }
 
@@ -272,7 +273,7 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
 }
 
 /* ===== CTA band (before footer) ===== */
-.cta-band { background: var(--kraft-photo); padding: 56px 0; text-align: center; }
+.cta-band { background: var(--olive); padding: 56px 0; text-align: center; }
 .cta-band h2 { font-size: clamp(22px, 3vw, 30px); color: #fff; }
 .cta-band p { margin-top: 10px; color: rgba(255, 255, 255, .85); }
 .cta-band .btn-row { margin-top: 26px; display: flex; justify-content: center; }
