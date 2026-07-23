@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Designsystem — Uniemballage Produktion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@600;700;800&family=Archivo+Narrow:wght@700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --kraft:        #C9A46E;   /* corrugated cardboard tone — signature bg */
+    --kraft-dark:   #A9824F;
+    --paper:        #FAF6EC;   /* light paper bg */
+    --ink:          #211C15;   /* warm near-black, printer's ink not pure black */
+    --red:          #B30000;   /* from logo — UNI */
+    --red-dark:     #8A0000;
+    --gold:         #E8B252;   /* from logo — box icon */
+    --gold-dark:    #9E6E0C;
+    --line:         rgba(33,28,21,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px;margin:0 auto;padding:64px 32px 120px;}
+
+  h1,h2,h3{font-family:'Archivo Expanded',sans-serif;text-transform:uppercase;letter-spacing:0.01em;margin:0;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+
+  header.intro{margin-bottom:88px;}
+  header.intro .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--red);margin-bottom:14px;
+  }
+  header.intro h1{font-size:clamp(34px,5vw,56px);font-weight:800;line-height:1.05;max-width:16ch;}
+  header.intro p{font-size:17px;line-height:1.6;max-width:56ch;margin-top:22px;color:#4a4436;}
+
+  /* ---- die-line divider: signature element ---- */
+  .dieline{
+    position:relative;
+    height:34px;
+    margin:64px 0;
+    background-image: repeating-linear-gradient(
+      to right,
+      var(--ink) 0 10px,
+      transparent 10px 20px
+    );
+    background-size:100% 2px;
+    background-position:center;
+    background-repeat:no-repeat;
+    opacity:0.55;
+  }
+  .dieline::before,.dieline::after{
+    content:"";
+    position:absolute;top:50%;width:12px;height:12px;
+    border-left:2px solid var(--ink);border-bottom:2px solid var(--ink);
+    transform:translateY(-50%) rotate(45deg);
+    opacity:0.55;
+  }
+  .dieline::before{left:0;}
+  .dieline::after{right:0;transform:translateY(-50%) rotate(225deg);}
+  .dieline-label{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    background:var(--paper);padding:0 14px;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;
+    text-transform:uppercase;color:var(--ink);opacity:0.7;
+  }
+
+  section{margin-bottom:80px;}
+  section > h2{font-size:14px;letter-spacing:0.14em;color:var(--kraft-dark);margin-bottom:28px;}
+
+  /* swatches */
+  .swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px;}
+  .swatch{border:1px solid var(--line);border-radius:2px;overflow:hidden;background:#fff;}
+  .swatch .chip{height:96px;}
+  .swatch .meta{padding:14px 16px;}
+  .swatch .name{font-weight:600;font-size:14px;}
+  .swatch .hex{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#665f4e;margin-top:4px;}
+
+  /* type specimen */
+  .specimen{border-top:1px solid var(--line);padding:26px 0;}
+  .specimen .label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--kraft-dark);margin-bottom:10px;}
+  .specimen .sample-display{font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:40px;text-transform:uppercase;}
+  .specimen .sample-body{font-family:'Inter',sans-serif;font-size:17px;line-height:1.6;max-width:60ch;color:#332e24;}
+  .specimen .sample-mono{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--red);}
+  .sample-wordmark{font-family:'Archivo Narrow',sans-serif;font-weight:700;font-size:44px;letter-spacing:-0.01em;text-transform:uppercase;}
+  .sample-wordmark .uni{color:var(--red);}
+
+  /* buttons */
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .btn{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;
+    padding:14px 26px;border-radius:2px;display:inline-flex;align-items:center;gap:10px;
+    text-decoration:none;cursor:pointer;border:2px solid transparent;transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--red);color:#fff;}
+  .btn-primary:hover{background:var(--red-dark);}
+  .btn-secondary{background:transparent;color:var(--ink);border-color:var(--ink);}
+  .btn-secondary:hover{background:var(--ink);color:var(--paper);}
+  .btn-arrow{transition:transform .15s ease;}
+  .btn:hover .btn-arrow{transform:translateX(3px);}
+
+  /* card / icon module */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;background:var(--line);border:1px solid var(--line);}
+  .card{
+    position:relative;overflow:hidden;background:var(--paper);padding:28px 24px;
+    cursor:pointer;transition:background .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .card::before{
+    content:"";position:absolute;left:0;top:0;width:100%;height:3px;
+    background:var(--red);transform:scaleX(0);transform-origin:left;
+    transition:transform .3s ease;
+  }
+  .card:hover,
+  .card:focus-visible{
+    background:#fff;transform:translateY(-4px);
+    box-shadow:0 14px 26px -10px rgba(33,28,21,0.22);
+  }
+  .card:hover::before,
+  .card:focus-visible::before{transform:scaleX(1);}
+  .card .icon{
+    width:40px;height:40px;border-radius:50%;background:var(--gold);margin-bottom:16px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--ink);
+    transition:background .25s ease, color .25s ease, transform .25s ease;
+  }
+  .card:hover .icon,
+  .card:focus-visible .icon{background:var(--red);color:#fff;transform:scale(1.08) rotate(-6deg);}
+  .card h3{
+    font-size:16px;text-transform:none;font-family:'Inter',sans-serif;font-weight:600;margin-bottom:8px;
+    display:flex;align-items:center;gap:6px;
+  }
+  .card h3 .card-arrow{
+    font-family:'IBM Plex Mono',monospace;color:var(--red);
+    opacity:0;transform:translateX(-6px);
+    transition:opacity .25s ease, transform .25s ease;
+  }
+  .card:hover h3 .card-arrow,
+  .card:focus-visible h3 .card-arrow{opacity:1;transform:translateX(0);}
+  .card p{font-size:14px;line-height:1.55;color:#4a4436;margin:0;}
+  @media (prefers-reduced-motion: reduce){
+    .card,.card::before,.card .icon,.card h3 .card-arrow{transition:none;}
+    .card:hover,.card:focus-visible{transform:none;}
+  }
+
+  .rule-list{font-size:14px;line-height:1.8;color:#4a4436;}
+  .rule-list strong{color:var(--ink);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="intro">
+    <div class="eyebrow">Designsystem · Ref. UE-01 · Uniemballage Produktion ApS</div>
+    <h1>Konstruksjonstegning for et nytt uttrykk</h1>
+    <p>Dette er referansesiden for det låste designsystemet. Paletten er hentet direkte fra den eksisterende logoen — ingen oppfunne farger. Signatur­elementet (die-line-skillelinjer) speiler selskapets eget fag: konstruksjons­tegninger for emballasje.</p>
+  </header>
+
+  <div class="dieline"><span class="dieline-label">Snittlinje 01</span></div>
+
+  <section>
+    <h2>01 — Farger</h2>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="chip" style="background:var(--red);"></div>
+        <div class="meta"><div class="name">Uni-rød</div><div class="hex">#B30000 — primær</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:var(--gold);"></div>
+        <div class="meta"><div class="name">Eske-gull</div><div class="hex">#E8B252 — aksent</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:var(--kraft);"></div>
+        <div class="meta"><div class="name">Bølgepapp</div><div class="hex">#C9A46E — signaturflate</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:var(--ink);"></div>
+        <div class="meta"><div class="name">Trykksverte</div><div class="hex">#211C15 — tekst</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:var(--paper);border-bottom:1px solid var(--line);"></div>
+        <div class="meta"><div class="name">Papir</div><div class="hex">#FAF6EC — bakgrunn</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="dieline"><span class="dieline-label">Snittlinje 02</span></div>
+
+  <section>
+    <h2>02 — Typografi</h2>
+    <div class="specimen">
+      <div class="label">Display — Archivo Expanded 800 · overskrifter, store tall</div>
+      <div class="sample-display">Emballasje til ethvert behov</div>
+    </div>
+    <div class="specimen">
+      <div class="label">Body — Inter 400/500 · brødtekst</div>
+      <div class="sample-body">Vi produserer og leverer displayemballasje, transportemballasje og spesialkonstruksjoner i pap, karton og plast — fra egen fabrikk i Taastrup, med 30 års erfaring i faget.</div>
+    </div>
+    <div class="specimen">
+      <div class="label">Mono — IBM Plex Mono · spesifikasjoner, tekniske data, CTA-tekst</div>
+      <div class="sample-mono">BØLGEPAPP · 3–13 MM · FSC-SERTIFISERT · CVR 32941079</div>
+    </div>
+    <div class="specimen">
+      <div class="label">Wordmark — Archivo Narrow 700 · matcher logoens ordmerke, kun til logo/header-bruk</div>
+      <div class="sample-wordmark"><span class="uni">UNI</span>EMBALLAGE</div>
+    </div>
+  </section>
+
+  <div class="dieline"><span class="dieline-label">Snittlinje 03</span></div>
+
+  <section>
+    <h2>03 — Knapper</h2>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#">Be om tilbud <span class="btn-arrow">→</span></a>
+      <a class="btn btn-secondary" href="#">Se produkter <span class="btn-arrow">→</span></a>
+    </div>
+  </section>
+
+  <div class="dieline"><span class="dieline-label">Snittlinje 04</span></div>
+
+  <section>
+    <h2>04 — Produktmodul</h2>
+    <div class="cards">
+      <div class="card" tabindex="0"><div class="icon">01</div><h3>Displayemballasje<span class="card-arrow">→</span></h3><p>Borddisplay, gulvdisplay, standee og akryldisplay.</p></div>
+      <div class="card" tabindex="0"><div class="icon">02</div><h3>Transportemballasje<span class="card-arrow">→</span></h3><p>Papkasser, endeløse baner, ruller og kantbeskyttere.</p></div>
+      <div class="card" tabindex="0"><div class="icon">03</div><h3>Digital print<span class="card-arrow">→</span></h3><p>Effektivt alternativ til tradisjonelle trykkmetoder.</p></div>
+    </div>
+  </section>
+
+  <div class="dieline"><span class="dieline-label">Snittlinje 05</span></div>
+
+  <section>
+    <h2>05 — Regler som ikke skal reverseres</h2>
+    <div class="rule-list">
+      <strong>Farger hentet fra logo, ikke oppfunnet</strong> — rødt #B30000 og gull #E8B252 kommer direkte fra eksisterende logo.<br>
+      <strong>Kraft/bølgepapp-tonen erstatter ren hvit</strong> — brukes som signaturflate (seksjonsbakgrunner), ikke som hovedbakgrunn — for mye kan bli tungt.<br>
+      <strong>Trykksverte, ikke ren sort</strong> — #211C15 for all brødtekst, aldri #000000.<br>
+      <strong>Die-line-skillelinjer</strong> er sidens eneste dekorative gjentakende element — ikke legg til andre stiler av dividers.<br>
+      <strong>Archivo Narrow 700 er reservert til ordmerket</strong> — matcher logoens font, brukes kun i logo/header, ikke som generell overskriftsfont (det er fortsatt Archivo Expanded).
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
