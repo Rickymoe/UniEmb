@@ -145,7 +145,7 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
     linear-gradient(100deg, rgba(33, 28, 21, .85) 0%, rgba(33, 28, 21, .6) 45%, rgba(33, 28, 21, .4) 100%),
     url('../Bilder/forside/hero-general.png') center / cover no-repeat;
 }
-.hero .wrap { max-width: 640px; }
+.hero .wrap { max-width: 640px; margin-left: max(32px, calc((100% - 1180px) / 2)); margin-right: 0; }
 @media (max-width: 700px) {
   /* Narrow screens crop the hero image by width instead of height (the
      opposite of desktop), so the default centered position lands on empty
