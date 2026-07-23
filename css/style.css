@@ -8,6 +8,10 @@
   --gold: #E8B252;
   --gold-dark: #9E6E0C;
   --line: rgba(33, 28, 21, 0.16);
+  --cream-warm: #E7DBD0;
+  --tan-warm: #D9CCC0;
+  --kraft-photo: #926644;
+  --olive: #7E7D53;
 }
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; overflow-x: clip; }
@@ -36,20 +40,18 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
 }
 .lead { font-size: 17px; line-height: 1.6; max-width: 56ch; color: #4a4436; margin-top: 14px; }
 
-/* ===== Die-line divider ===== */
-.dieline {
-  position: relative; height: 34px;
-  background-image: repeating-linear-gradient(to right, var(--ink) 0 10px, transparent 10px 20px);
-  background-size: 100% 2px; background-position: center; background-repeat: no-repeat;
-  opacity: 0.55;
-}
-.dieline::before, .dieline::after {
-  content: ""; position: absolute; top: 50%; width: 12px; height: 12px;
-  border-left: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
-  transform: translateY(-50%) rotate(45deg);
-}
-.dieline::before { left: 32px; }
-.dieline::after { right: 32px; transform: translateY(-50%) rotate(225deg); }
+/* ===== Section background rhythm (replaces the old die-line dividers) ===== */
+.section--white { background: #fff; }
+.section--cream { background: var(--cream-warm); }
+.section--tan { background: var(--tan-warm); }
+.section--dark { background: var(--kraft-photo); color: #fff; }
+.section--olive { background: var(--olive); color: #fff; }
+.section--dark h1, .section--dark h2, .section--dark h3,
+.section--olive h1, .section--olive h2, .section--olive h3 { color: #fff; }
+.section--dark p, .section--dark .eyebrow,
+.section--olive p, .section--olive .eyebrow { color: rgba(255, 255, 255, .85); }
+.section--dark .btn-secondary, .section--olive .btn-secondary { border-color: rgba(255, 255, 255, .7); color: #fff; }
+.section--dark .btn-secondary:hover, .section--olive .btn-secondary:hover { background: rgba(255, 255, 255, .15); }
 
 /* ===== Buttons ===== */
 .btn {
@@ -129,11 +131,34 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
 .reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
 .reveal.visible { opacity: 1; transform: none; }
 
-/* ===== Hero (forside) ===== */
-.hero { padding-top: 56px; padding-bottom: 60px; }
-.hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
-.hero h1 { font-size: clamp(30px, 4.4vw, 50px); font-weight: 800; line-height: 1.08; max-width: 15ch; margin-top: 14px; }
+/* ===== Hero (forside) — full-bleed image, same pattern as Kuvaas/Mokollen ===== */
+.hero {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  padding-top: 100px;
+  padding-bottom: 70px;
+  background:
+    linear-gradient(100deg, rgba(33, 28, 21, .85) 0%, rgba(33, 28, 21, .6) 45%, rgba(33, 28, 21, .4) 100%),
+    url('../Bilder/forside/hero-general.png') center / cover no-repeat;
+}
+.hero .wrap { max-width: 640px; }
+@media (max-width: 700px) {
+  /* Narrow screens crop the hero image by width instead of height (the
+     opposite of desktop), so the default centered position lands on empty
+     wall and crops out the "Uniemballage" box on the right — shift the
+     crop window to keep it in frame. */
+  .hero {
+    background-position: 100% center;
+  }
+}
+.hero .eyebrow { color: var(--gold); }
+.hero .lead { color: rgba(250, 246, 236, .92); }
+.hero h1 { font-size: clamp(30px, 4.4vw, 50px); font-weight: 800; line-height: 1.08; max-width: 15ch; margin-top: 14px; color: #fff; }
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+.hero-cta .btn-secondary { border-color: rgba(255, 255, 255, .7); color: #fff; }
+.hero-cta .btn-secondary:hover { background: rgba(255, 255, 255, .15); }
 .hero-carousel { position: relative; aspect-ratio: 1/1; border-radius: 2px; overflow: hidden; background: #fff; }
 .hero-carousel-slide { position: absolute; inset: 0; opacity: 0; z-index: 0; transition: opacity .6s ease; cursor: zoom-in; }
 .hero-carousel-slide.is-active { opacity: 1; z-index: 1; }
@@ -157,16 +182,7 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
 }
 .hero-carousel-dot.is-active { background: var(--red); transform: scale(1.3); }
 @media (prefers-reduced-motion: reduce) { .hero-carousel-slide { transition: none; } }
-.hero-image-single { position: relative; aspect-ratio: 1/1; border-radius: 2px; overflow: hidden; border: 1px solid var(--line); background: #fff; cursor: zoom-in; }
-.hero-image-single img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.hero-image-single::after {
-  content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 3px;
-  background: var(--red); transform: scaleX(0); transform-origin: left;
-  transition: transform .3s ease;
-}
-.hero-image-single:hover::after, .hero-image-single:focus-within::after { transform: scaleX(1); }
-@media (prefers-reduced-motion: reduce) { .hero-image-single::after { transition: none; } }
-@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } .hero-carousel, .hero-image-single { max-width: 480px; } }
+@media (max-width: 900px) { .hero-carousel { max-width: 480px; } }
 
 /* ===== About / production block ===== */
 .about-production { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
@@ -256,10 +272,12 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
 }
 
 /* ===== CTA band (before footer) ===== */
-.cta-band { background: var(--kraft); padding: 56px 0; text-align: center; }
-.cta-band h2 { font-size: clamp(22px, 3vw, 30px); color: var(--ink); }
-.cta-band p { margin-top: 10px; color: #40331d; }
+.cta-band { background: var(--kraft-photo); padding: 56px 0; text-align: center; }
+.cta-band h2 { font-size: clamp(22px, 3vw, 30px); color: #fff; }
+.cta-band p { margin-top: 10px; color: rgba(255, 255, 255, .85); }
 .cta-band .btn-row { margin-top: 26px; display: flex; justify-content: center; }
+.cta-band .btn-secondary { border-color: rgba(255, 255, 255, .7); color: #fff; }
+.cta-band .btn-secondary:hover { background: rgba(255, 255, 255, .15); }
 
 /* ===== Footer ===== */
 .footer { background: var(--ink); color: var(--paper); padding: 56px 0 26px; }
