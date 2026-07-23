@@ -67,10 +67,26 @@ function initLightbox() {
   if (!lightbox) return;
   const lightboxImg = lightbox.querySelector('img');
   const closeBtn = lightbox.querySelector('.lightbox-close');
+  const prevBtn = lightbox.querySelector('.lightbox-prev');
+  const nextBtn = lightbox.querySelector('.lightbox-next');
 
-  function open(src, alt) {
-    lightboxImg.src = src;
-    lightboxImg.alt = alt || '';
+  const triggers = Array.from(document.querySelectorAll('.lightbox-trigger'))
+    .map(el => el.tagName === 'IMG' ? el : el.querySelector('img'))
+    .filter(Boolean);
+  const showArrows = triggers.length > 1;
+  prevBtn.hidden = !showArrows;
+  nextBtn.hidden = !showArrows;
+
+  let index = 0;
+
+  function show(i) {
+    index = (i + triggers.length) % triggers.length;
+    const img = triggers[index];
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt || '';
+  }
+  function open(i) {
+    show(i);
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -79,18 +95,24 @@ function initLightbox() {
     document.body.style.overflow = '';
     lightboxImg.src = '';
   }
+  function next() { show(index + 1); }
+  function prev() { show(index - 1); }
 
-  document.querySelectorAll('.lightbox-trigger').forEach(el => {
-    el.addEventListener('click', () => {
-      const img = el.tagName === 'IMG' ? el : el.querySelector('img');
-      if (img) open(img.src, img.alt);
-    });
+  triggers.forEach((img, i) => {
+    img.closest('.lightbox-trigger').addEventListener('click', () => open(i));
   });
 
   closeBtn.addEventListener('click', close);
+  if (showArrows) {
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+  }
   lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox.classList.contains('open')) close();
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (showArrows && e.key === 'ArrowLeft') prev();
+    if (showArrows && e.key === 'ArrowRight') next();
   });
 }
 
