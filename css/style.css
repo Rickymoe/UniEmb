@@ -38,7 +38,7 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
 
 /* ===== Die-line divider ===== */
 .dieline {
-  position: relative; height: 34px; margin: 0;
+  position: relative; height: 34px;
   background-image: repeating-linear-gradient(to right, var(--ink) 0 10px, transparent 10px 20px);
   background-size: 100% 2px; background-position: center; background-repeat: no-repeat;
   opacity: 0.55;
@@ -72,6 +72,7 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
 /* ===== Nav ===== */
 .nav { position: sticky; top: 0; z-index: 50; background: rgba(250, 246, 236, .94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
 .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 78px; gap: 20px; position: relative; }
+.nav-logo { display: flex; align-items: center; gap: 10px; }
 .nav-logo img { height: 42px; }
 .nav-links { list-style: none; display: flex; gap: 6px; align-items: center; }
 .nav-links > li > a {
