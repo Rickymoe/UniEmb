@@ -28,11 +28,19 @@
         <a href="kontakt.html" class="btn btn-secondary">Bed om tilbud <span class="btn-arrow">&rarr;</span></a>
       </div>
     </div>
-    <div class="hero-image-grid reveal">
-      <img src="Bilder/forside/hero-maxfactor.png" alt="Displayemballage leveret til Max Factor">
-      <img src="Bilder/forside/hero-rimmel.png" alt="Displayemballage leveret til Rimmel London">
-      <img src="Bilder/forside/hero-candy.png" alt="Displayemballage leveret til slikprodukter">
-      <img src="Bilder/forside/hero-nutella.png" alt="Gulvdisplay-tårn leveret til Nutella">
+    <div class="hero-carousel reveal" aria-roledescription="karrusel" aria-label="Produktbilleder">
+      <div class="hero-carousel-slide is-active lightbox-trigger"><img src="Bilder/forside/hero-maxfactor.png" alt="Displayemballage leveret til Max Factor"></div>
+      <div class="hero-carousel-slide lightbox-trigger"><img src="Bilder/forside/hero-rimmel.png" alt="Displayemballage leveret til Rimmel London"></div>
+      <div class="hero-carousel-slide lightbox-trigger"><img src="Bilder/forside/hero-candy.png" alt="Displayemballage leveret til slikprodukter"></div>
+      <div class="hero-carousel-slide lightbox-trigger"><img src="Bilder/forside/hero-nutella.png" alt="Julegaveemballage leveret til Hornbeer"></div>
+      <button class="hero-carousel-arrow hero-carousel-prev" type="button" aria-label="Forrige billede">&#8249;</button>
+      <button class="hero-carousel-arrow hero-carousel-next" type="button" aria-label="Næste billede">&#8250;</button>
+      <div class="hero-carousel-dots">
+        <button class="hero-carousel-dot is-active" type="button" aria-label="Billede 1"></button>
+        <button class="hero-carousel-dot" type="button" aria-label="Billede 2"></button>
+        <button class="hero-carousel-dot" type="button" aria-label="Billede 3"></button>
+        <button class="hero-carousel-dot" type="button" aria-label="Billede 4"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -113,6 +121,7 @@
 </div>
 
 <div id="site-footer"></div>
+<div id="lightbox-root"></div>
 <script src="js/main.js"></script>
 </body>
 </html>
