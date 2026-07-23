@@ -270,7 +270,7 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
 /* ===== Statement band (forside, under hero) ===== */
 .statement-band { padding: 50px 0; background: #fff; }
 .statement-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
-.statement-band p { font-family: 'Archivo Expanded', sans-serif; font-weight: 800; text-transform: uppercase; font-size: clamp(30px, 4.8vw, 54px); line-height: 1.4; color: var(--ink); }
+.statement-band p { font-family: 'Archivo Expanded', sans-serif; font-weight: 800; text-transform: uppercase; font-size: clamp(30px, 4.8vw, 54px); line-height: 1.15; color: var(--ink); }
 .statement-band .statement-support { font-family: 'Inter', sans-serif; font-weight: 400; text-transform: none; font-size: 17px; line-height: 1.6; color: #4a4436; max-width: 46ch; margin-top: 20px; }
 .statement-band .statement-highlight { position: relative; color: var(--red); }
 @media (max-width: 900px) { .statement-grid { grid-template-columns: 1fr; } }
@@ -284,15 +284,8 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
 .statement-text .word:nth-child(4) { transition-delay: .38s; }
 .statement-text .word:nth-child(5) { transition-delay: .48s; }
 .statement-copy.reveal.visible .word { opacity: 1; transform: none; }
-.statement-highlight .word-underline {
-  position: absolute; left: 0; right: 0; bottom: -6px; height: 4px;
-  background: var(--red); transform: scaleX(0); transform-origin: left;
-  transition: transform .5s ease; transition-delay: .65s;
-}
-.statement-copy.reveal.visible .statement-highlight .word-underline { transform: scaleX(1); }
 @media (prefers-reduced-motion: reduce) {
   .statement-text .word { opacity: 1; transform: none; transition: none; }
-  .statement-highlight .word-underline { transition: none; }
 }
 
 /* ===== CTA band (before footer) ===== */
