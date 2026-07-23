@@ -162,7 +162,7 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
 .hero-cta .btn-secondary { border-color: rgba(255, 255, 255, .7); color: #fff; }
 .hero-cta .btn-secondary:hover { background: rgba(255, 255, 255, .15); }
 .hero-carousel { position: relative; aspect-ratio: 1/1; border-radius: 2px; overflow: hidden; background: #fff; }
-.hero-carousel-slide { position: absolute; inset: 0; opacity: 0; z-index: 0; transition: opacity .6s ease; cursor: zoom-in; }
+.hero-carousel-slide { position: absolute; inset: 0; opacity: 0; z-index: 0; transition: opacity 1.2s ease; cursor: zoom-in; }
 .hero-carousel-slide.is-active { opacity: 1; z-index: 1; }
 .hero-carousel-slide img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; }
 .hero-carousel-arrow {
@@ -265,7 +265,7 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
 /* ===== Statement band (forside, under hero) ===== */
 .statement-band { padding: 50px 0; background: #fff; }
 .statement-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
-.statement-band p { font-family: 'Archivo Expanded', sans-serif; font-weight: 800; text-transform: uppercase; font-size: clamp(30px, 4.8vw, 54px); line-height: 1.15; color: var(--ink); }
+.statement-band p { font-family: 'Archivo Expanded', sans-serif; font-weight: 800; text-transform: uppercase; font-size: clamp(30px, 4.8vw, 54px); line-height: 1.4; color: var(--ink); }
 .statement-band .statement-support { font-family: 'Inter', sans-serif; font-weight: 400; text-transform: none; font-size: 17px; line-height: 1.6; color: #4a4436; max-width: 46ch; margin-top: 20px; }
 .statement-band .statement-highlight { position: relative; color: var(--red); }
 @media (max-width: 900px) { .statement-grid { grid-template-columns: 1fr; } }
