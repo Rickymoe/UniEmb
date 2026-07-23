@@ -155,7 +155,9 @@ h1, h2, h3 { font-family: 'Archivo Expanded', sans-serif; text-transform: upperc
      wall and crops out the "Uniemballage" box on the right — shift the
      crop window to keep it in frame. */
   .hero {
-    background-position: 100% center;
+    background:
+      linear-gradient(180deg, rgba(33, 28, 21, .82) 0%, rgba(33, 28, 21, .68) 45%, rgba(33, 28, 21, .82) 100%),
+      url('../Bilder/forside/hero-general.png') 100% center / cover no-repeat;
   }
 }
 .hero .eyebrow { color: var(--gold); }
